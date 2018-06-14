@@ -18,36 +18,13 @@ io.on('connection', (socket) => {
   // socket.emit from admin
   socket.emit('newMessage', generateMessage('Admin', 'Welcome to new connected deviced'));
   socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
-  // socket.emit('newMessage', {
-  //   from: 'Admin',
-  //   text: 'Welcome to new connected deviced'
-  // });
-  // socket.broadcast.emit('newMessage', {
-  //   from: 'Admin',
-  //   text: 'New user joined'
-  // });
 
-  // emit event to client
-  // socket.emit('newMessage', { // emit to single connection
-  //   from: 'Server 01',
-  //   text: 'Content from server 01',
-  //   createdAt: 123
-  // });
 
   // Listen for event from client
-  socket.on('createMassage', (message) => {
+  socket.on('createMassage', (message, callback) => {
     console.log('createMassage', message);
     io.emit('newMessage', generateMessage(message.from, message.text));
-    // io.emit('newMessage', {
-    //   from: message.from,
-    //   text: message.text,
-    //   createdAt: new Date().getTime()
-    // }) //emit to every single connection
-    // socket.broadcast.emit('newMessage', {
-    //   from: message.from,
-    //   text: message.text,
-    //   createdAt: new Date().getTime()
-    // }); // created emit to all socket exclude current ID
+    callback('This is from the server');
   });
 
   socket.on('disconnect', () => {

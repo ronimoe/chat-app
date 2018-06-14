@@ -19,3 +19,10 @@ socket.on('newMessage', function(message){
   console.log('newMessage', message);
 });
 
+socket.emit('createMassage', {
+  from: 'ID 001',
+  text: 'Test Connect'
+}, function(data){
+  console.log('Connected Done: ', data);
+});
+
