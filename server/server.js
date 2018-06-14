@@ -15,15 +15,20 @@ io.on('connection', (socket) => {
   console.log('New user connected');
 
   // emit event to client
-  socket.emit('newMessage', {
-    from: 'Server 01',
-    text: 'Content from server 01',
-    createdAt: 123
-  });
+  // socket.emit('newMessage', { // emit to single connection
+  //   from: 'Server 01',
+  //   text: 'Content from server 01',
+  //   createdAt: 123
+  // });
 
   // Listen for event from client
   socket.on('createMassage', (message) => {
     console.log('createMassage', message);
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    }) //emit to every single connection
   });
 
   socket.on('disconnect', () => {
