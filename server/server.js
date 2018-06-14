@@ -14,6 +14,16 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
   console.log('New user connected');
 
+  // socket.emit from admin
+  socket.emit('newMessage', {
+    from: 'Admin',
+    text: 'Welcome to new connected deviced'
+  });
+  socket.broadcast.emit('newMessage', {
+    from: 'Admin',
+    text: 'New user joined'
+  });
+
   // emit event to client
   // socket.emit('newMessage', { // emit to single connection
   //   from: 'Server 01',
@@ -29,6 +39,11 @@ io.on('connection', (socket) => {
       text: message.text,
       createdAt: new Date().getTime()
     }) //emit to every single connection
+    // socket.broadcast.emit('newMessage', {
+    //   from: message.from,
+    //   text: message.text,
+    //   createdAt: new Date().getTime()
+    // }); // created emit to all socket exclude current ID
   });
 
   socket.on('disconnect', () => {
