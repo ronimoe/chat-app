@@ -1,29 +1,25 @@
 {
-  "name": "chat",
+  "name": "node-chat-app",
   "version": "1.0.0",
-  "description": "socket.io test for client and server using chat app",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec 'npm test'"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/ronimoe/chat-app"
-  },
   "engines": {
-    "node": "8.11.2"
+    "node": "6.2.2"
   },
-  "author": "RoniMoe",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
-    "socket.io": "^2.1.1"
+    "express": "^4.14.0",
+    "socket.io": "^1.4.8"
   },
   "devDependencies": {
-    "expect": "^23.1.0",
-    "mocha": "^5.2.0",
-    "nodemon": "^1.17.5"
+    "expect": "^1.20.2",
+    "mocha": "^3.0.2",
+    "nodemon": "^1.10.2"
   }
 }
